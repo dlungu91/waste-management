@@ -103,9 +103,9 @@ class CollectionsController extends Controller
      * @param  \App\collections  $collections
      * @return \Illuminate\Http\Response
      */
-    public function destroy(collections $collections)
+    public function destroy($id)
     {
-        $collections->delete();
+        Collections::find($id)->delete();
 
         return redirect('/collections');
     }

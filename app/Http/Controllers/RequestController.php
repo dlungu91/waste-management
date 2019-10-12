@@ -14,7 +14,9 @@ class RequestController extends Controller
      */
     public function index()
     {
-        return view('requests.index');
+        $requests = Request::all();
+
+        return view('requests.index', compact('requests'));
     }
 
     /**
@@ -24,7 +26,7 @@ class RequestController extends Controller
      */
     public function create()
     {
-        //
+        return view('requests.create');
     }
 
     /**
@@ -35,7 +37,16 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Request::create(request([
+            'client_id',
+            'collection_id',
+            'request',
+            'status',
+            'date_made',
+            'date_due',
+        ]));
+
+        return redirect('/requests');
     }
 
     /**
@@ -46,7 +57,7 @@ class RequestController extends Controller
      */
     public function show(Request $request)
     {
-        //
+        return view('/requests.show', compact('request'));
     }
 
     /**
@@ -57,7 +68,7 @@ class RequestController extends Controller
      */
     public function edit(Request $request)
     {
-        //
+        return view('/requests.edit', compact('request'));
     }
 
     /**
@@ -69,7 +80,15 @@ class RequestController extends Controller
      */
     public function update(Request $request)
     {
-        //
+        $request->update(request([
+            'client_id',
+            'collection_id',
+            'request',
+            'status',
+            'date_made',
+            'date_due']));
+
+        return redirect('/requests');
     }
 
     /**
@@ -80,6 +99,8 @@ class RequestController extends Controller
      */
     public function destroy(Request $request)
     {
-        //
+        $request->delete($request);
+
+        return redirect('/requests');
     }
 }

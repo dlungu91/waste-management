@@ -98,8 +98,10 @@ class ComplaintController extends Controller
      * @param  \App\Complaint  $complaint
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Complaint $complaint)
+    public function destroy($id)
     {
-        //
+        Complaint::find($id)->delete();
+
+        return redirect('/complaints');
     }
 }

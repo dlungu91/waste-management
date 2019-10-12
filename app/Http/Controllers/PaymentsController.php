@@ -27,7 +27,7 @@ class PaymentsController extends Controller
      */
     public function create()
     {
-        
+        return view('payments.create');
     }
 
     /**
@@ -99,7 +99,7 @@ class PaymentsController extends Controller
             'datedue'
         ])));
 
-        return redirect('/clients');
+        return redirect('/payments');
     }
 
     /**
@@ -110,6 +110,8 @@ class PaymentsController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete($payment);
+
+        return redirect('/payments');
     }
 }
